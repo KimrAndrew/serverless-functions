@@ -12,7 +12,7 @@ class handler(BaseHTTPRequestHandler):
     dic = dict(query_string_list)
 
     if 'word' in dic:
-        url = 'https://api.dictionaryapi.dev/api/v2/entries/en'
+        url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
         r = requests.get(url + dic['word'])
         print('word')
         data = r.json()
