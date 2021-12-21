@@ -21,16 +21,15 @@ class handler(BaseHTTPRequestHandler):
             part_of_speech = word_data['meanings'][0]['partOfSpeech']
             if part_of_speech == 'adjective':
                 synonyms = word_data['meanings'][0]['definitions'][0]['synonyms']
+            else:
+                message = [f'{dic["word"]} is not an adjective']
             
         if synonyms:
             message = str(synonyms)
 
-        else:
-            message = f'No synonyms found for {dic["word"]}'
-
     else:
         # TODO: should send a status 400, only adjectives should be allowed
-        message = 'Word must be an adjective'
+        message = 'No word given'
 
 
     self.send_response(200)
