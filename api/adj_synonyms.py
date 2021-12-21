@@ -15,11 +15,18 @@ class handler(BaseHTTPRequestHandler):
         url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
         r = requests.get(url + dic['word'])
         data = r.json()
-        definitions = []
+        parts_of_speech = []
+        synonyms = []
         for word_data in data:
-            definition = word_data['meanings'][0]['partOfSpeech']
-            definitions.append(definition)
-        message = str(definitions)
+            part_of_speech = word_data['meanings'][0]['partOfSpeech']
+            if part_of_speech == 'adjective':
+                synonyms = word_data['meanigs'][0]['synonyms']
+            
+        if synonyms:
+            message = str(synonyms)
+
+        else:
+            message = f'No synonyms found for {dic["word"]}'
 
     else:
         # TODO: should send a status 400, only adjectives should be allowed
