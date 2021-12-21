@@ -20,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
         for word_data in data:
             part_of_speech = word_data['meanings'][0]['partOfSpeech']
             if part_of_speech == 'adjective':
-                synonyms = word_data['meanings'][0]['definitions']['synonyms']
+                synonyms = word_data['meanings'][0]['definitions'][0]['synonyms']
             
         if synonyms:
             message = str(synonyms)
