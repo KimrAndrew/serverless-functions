@@ -14,12 +14,10 @@ class handler(BaseHTTPRequestHandler):
     if 'word' in dic:
         url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
         r = requests.get(url + dic['word'])
-        print('word')
         data = r.json()
         definitions = []
         for word_data in data:
-            print(str(word_data))
-            definition = word_data['meanings'][0]['definitions'][0]['definition']
+            definition = word_data['meanings'][0]['partOfSpeech']
             definitions.append(definition)
         message = str(definitions)
 
