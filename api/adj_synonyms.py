@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 from urllib import parse
-import requests as requests
+import requests
 
 class handler(BaseHTTPRequestHandler):
 
@@ -11,13 +11,11 @@ class handler(BaseHTTPRequestHandler):
     query_string_list = parse.parse_qsl(url_components.query)
     dic = dict(query_string_list)
 
-    message = dic
-
     if 'word' in dic:
         url = 'https://api.dictionaryapi.dev/api/v2/entries/en'
         r = requests.get(url + dic['word'])
         print('word')
-        data = r.json
+        data = r.json()
         definitions = []
         for word_data in data:
             print(str(word_data))
