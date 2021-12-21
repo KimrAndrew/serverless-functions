@@ -13,19 +13,19 @@ class handler(BaseHTTPRequestHandler):
 
     message = dic
 
-    # if 'word' in dic:
-    #     url = 'https://api.dictionaryapi.dev/api/v2/entries/en'
-    #     r = requests.get(url + dic['word'])
-    #     data = r.json
-    #     definitions = []
-    #     for word_data in data:
-    #         definition = word_data['meanings'][0]['definitions'][0]['definition']
-    #         definitions.append(definition)
-    #     message = str(definitions)
+    if 'word' in dic:
+        url = 'https://api.dictionaryapi.dev/api/v2/entries/en'
+        r = requests.get(url + dic['word'])
+        data = r.json
+        definitions = []
+        for word_data in data:
+            definition = word_data['meanings'][0]['definitions'][0]['definition']
+            definitions.append(definition)
+        message = str(definitions)
 
-    # else:
-    #     # TODO: should send a status 400, only adjectives should be allowed
-    #     message = 'Word must be an adjective'
+    else:
+        # TODO: should send a status 400, only adjectives should be allowed
+        message = 'Word must be an adjective'
 
 
     self.send_response(200)
