@@ -24,7 +24,7 @@ class handler(BaseHTTPRequestHandler):
             else:
                 message = [f'{dic["word"]} is not an adjective']
             
-        if synonyms:
+        if len(synonyms):
             message = str(synonyms)
 
     else:
